@@ -1,3 +1,4 @@
+require('dotenv').config()
 const express = require('express')
 const app = express()
 
@@ -16,9 +17,11 @@ app.use(session({
     saveUninitialized: true,
 }))
 
+const db_link = 'mongodb+srv://' + process.env.DB_USER + ':' + process.env.DB_PASS + '@cluster0.rbkqs.mongodb.net/tripbook?retryWrites=true&w=majority'
+
 const mongoose = require('mongoose');
 mongoose.connect(
-   'mongodb+srv://${process.env.MONGO_USER}:${process.env.MONGO_PW}@cluster0.zpmbu.mongodb.net/whiteboard?retryWrites=true&w=majority',
+   db_link,
    {useNewUrlParser: true, useUnifiedTopology: true});
 
 // const mongoose = require('mongoose');
