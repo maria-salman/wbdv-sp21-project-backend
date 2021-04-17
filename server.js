@@ -18,12 +18,17 @@ app.use(session({
 
 const mongoose = require('mongoose');
 mongoose.connect(
-    'mongodb+srv://${process.env.MONGO_USER}:${process.env.MONGO_PW}@cluster0.zpmbu.mongodb.net/whiteboard?retryWrites=true&w=majority',
-    {useNewUrlParser: true, useUnifiedTopology: true});
+   'mongodb+srv://${process.env.MONGO_USER}:${process.env.MONGO_PW}@cluster0.zpmbu.mongodb.net/whiteboard?retryWrites=true&w=majority',
+   {useNewUrlParser: true, useUnifiedTopology: true});
+
+// const mongoose = require('mongoose');
+// mongoose.connect(
+//     'mongodb://localhost:27017/whiteboard-02',
+//     {useNewUrlParser: true, useUnifiedTopology: true});
 
 // Configures CORS
 app.use(function (req, res, next) {
-    res.header('Access-Control-Allow-Origin', 'https://wbdv-sp21-finalproject.herokuapp.com');
+    res.header('Access-Control-Allow-Origin', 'http://localhost:3000');
     res.header('Access-Control-Allow-Headers',
         'Content-Type, X-Requested-With, Origin');
     res.header('Access-Control-Allow-Methods',
@@ -35,3 +40,4 @@ app.use(function (req, res, next) {
 require('./controllers/users-controller')(app)
 
 app.listen(process.env.PORT || 4000)
+// app.listen(4000)
