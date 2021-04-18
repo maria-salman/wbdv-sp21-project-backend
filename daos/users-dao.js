@@ -7,7 +7,8 @@ const findUserByUsername = (username) => {
 const findUserByCredentials = (credentials) => {
     return usersModel.findOne({
         username: credentials.username,
-        password: credentials.password
+        password: credentials.password,
+        email: credentials.email
     })
 }
 

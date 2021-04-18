@@ -4,7 +4,8 @@ const usersSchema = mongoose.Schema({
     lastName: String,
     username: String,
     password: String,
-    role: {type: String, enum: ['ADMIN', 'FACULTY', 'STUDENT']}
+    email: String,
+    role: {type: String, enum: ['FOLLOWER', 'ADVENTURER']}
 }, {collection: "users"})
 
 module.exports = usersSchema
