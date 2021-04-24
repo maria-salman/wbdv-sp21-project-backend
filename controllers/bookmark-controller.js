@@ -23,12 +23,6 @@ module.exports = (app) => {
             .then(bookmarks => res.json(bookmarks));
     }
 
-    const getBookmarksForUsername = (req, res) => {
-        const username = req.params.username;
-        bookmarkDao.getBookmarksForUsername(username)
-            .then(bookmarks => res.json(bookmarks));
-    }
-
     const IsBookmark = (req, res) => {
         const userId = req.params.userId;
         const bookId = req.params.bookId;
@@ -49,7 +43,6 @@ module.exports = (app) => {
     app.post('/api/bookmarks/add', addBookmark);
     app.delete('/api/bookmarks/remove', removeBookmark)
     app.get('/api/bookmarks/user/:userId', getBookmarksForUser);
-    app.get('/api/bookmarks/username/:username', getBookmarksForUsername);
     app.get('/api/bookmarks/currentUser/:bookId/:userId', IsBookmark)
     app.get('/api/bookmarks/all', getAllBookmarks)
 }

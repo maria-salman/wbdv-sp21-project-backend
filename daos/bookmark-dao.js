@@ -16,9 +16,6 @@ const getAllBookmarks = () => {
     return bookmarkModel.find();
 }
 
-const getBookmarksForUsername = (username) => {
-    return bookmarkModel.find({username})
-}
 const IsBookmark = (userId, bookId) => {
     return bookmarkModel.countDocuments({userId, bookId});
 }
@@ -28,6 +25,5 @@ module.exports = {
     removeBookmark,
     getBookmarksForUser,
     getAllBookmarks,
-    getBookmarksForUsername,
     IsBookmark
 }

@@ -41,6 +41,12 @@ module.exports = (app) => {
             .then(users => res.json(users))
     }
 
+    const findUserById = (req, res) => {
+        const userId = req.params['uid']
+        userDao.findUserById(userId)
+            .then(user => res.json(user))
+    }
+
     const updateProfile = (req, res) => {
         const currentUser = req.session['currentUser']
         const update = req.body
@@ -66,6 +72,6 @@ module.exports = (app) => {
     app.get('/api/profile', profile)
     app.put('/api/profile/update', updateProfile)
     app.get('/api/users', findAllUsers)
+    app.get('/api/users/:uid', findUserById)
     app.post('/api/logout', logout)
-
 }

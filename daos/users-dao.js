@@ -19,9 +19,14 @@ const updateUser = (userBody) => {
 
 const findAllUsers = () => userModel.find()
 
+const findUserById = (userId) => {
+    return userModel.findById(userId)
+}
+
 module.exports = {
     findUserByCredentials,
     createUser,
     updateUser,
-    findAllUsers
+    findAllUsers,
+    findUserById
 }

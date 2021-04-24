@@ -23,12 +23,6 @@ module.exports = (app) => {
             .then(recommendations => res.json(recommendations));
     }
 
-    const getRecommendationsForUsername = (req, res) => {
-        const username = req.params.username;
-        recommendationDao.getRecommendationsForUsername(username)
-            .then(recommendations => res.json(recommendations));
-    }
-
     const IsRecommendation = (req, res) => {
         const userId = req.params.userId;
         const bookId = req.params.bookId;
@@ -49,7 +43,6 @@ module.exports = (app) => {
     app.post('/api/recommendations/add', addRecommendation);
     app.delete('/api/recommendations/remove', removeRecommendation);
     app.get('/api/recommendations/user/:userId', getRecommendationsForUser);
-    app.get('/api/recommendations/username/:username', getRecommendationsForUsername);
     app.get('/api/recommendations/currentUser/:bookId/:userId', IsRecommendation)
     app.get('/api/recommendations/all', getAllRecommendations)
 }

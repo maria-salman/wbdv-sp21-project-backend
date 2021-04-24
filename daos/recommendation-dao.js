@@ -16,9 +16,6 @@ const getAllRecommendations = () => {
     return recommendationModel.find();
 }
 
-const getRecommendationsForUsername = (username) => {
-    return recommendationModel.find({username})
-}
 const IsRecommendation = (userId, bookId) => {
     return recommendationModel.countDocuments({userId, bookId});
 }
@@ -28,6 +25,5 @@ module.exports = {
     removeRecommendation,
     getRecommendationsForUser,
     getAllRecommendations,
-    getRecommendationsForUsername,
     IsRecommendation
 }
