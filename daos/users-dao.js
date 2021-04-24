@@ -1,23 +1,27 @@
-const usersModel = require("../models/users/users-model")
+const userModel = require('../models/users/users-model');
 
-const findUserByUsername = (username) => {
-    return usersModel.find({username})
+const findUserByCredentials = (username, password) => {
+    return userModel.findOne({username, password});
 }
 
-const findUserByCredentials = (credentials) => {
-    return usersModel.findOne({
-        username: credentials.username,
-        password: credentials.password,
-        email: credentials.email
-    })
+const createUser = (userBody) => {
+    const username = userBody.username;
+    const password = userBody.password;
+    const fullName = userBody.fullName;
+    const email = userBody.email;
+    const role = userBody.role;
+    return userModel.create({username, password, fullName, email, role});
 }
 
-const createUser = (user) => {
-    return usersModel.create(user)
+const updateUser = (userBody) => {
+    return userModel.updateOne({_id: userBody._id}, {$set: userBody});
 }
+
+const findAllUsers = () => userModel.find()
 
 module.exports = {
-    findUserByUsername,
     findUserByCredentials,
-    createUser
+    createUser,
+    updateUser,
+    findAllUsers
 }

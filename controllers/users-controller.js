@@ -1,43 +1,71 @@
-const userDao = require("../daos/users-dao")
+const userDao = require('../daos/users-dao')
 
 module.exports = (app) => {
-
-
-    const register = (req, res) => {
-        const credentials = req.body;
-        userDao.findUserByUsername(credentials.username)
-            .then((actualUser) => {
-                if(actualUser.length > 0) {
-                    res.send("0")
+    const login = (req, res) => {
+        const username = req.body.username
+        const password = req.body.password
+        userDao.findUserByCredentials(username, password)
+            .then(user => {
+                if (user) {
+                    req.session['currentUser'] = user
+                    res.send(user)
                 } else {
-                    userDao.createUser(credentials)
-                        .then((newUser) => {
-                            req.session['profile'] = newUser
-                            res.send(newUser)
-                        })
+                    res.sendStatus(403)
                 }
             })
     }
 
-    const login = (req, res) => {
-        const credentials = req.body;
-        userDao.findUserByCredentials(credentials)
-            .then((actualUser) => {
-                if(actualUser) {
-                    req.session['profile'] = actualUser
-                    res.send(actualUser)
-                } else {
-                    res.send("0")
-                }
+    const register = (req, res) => {
+        const newUser = req.body
+        userDao.createUser(newUser)
+            .then(actualUser => {
+                req.session['currentUser'] = actualUser
+                res.json(actualUser)
+            })
+            .catch(() => {
+                res.status(400).send('Username is taken.')
             })
     }
 
     const profile = (req, res) => {
-        const currentUser = req.session["profile"]
-        res.send(currentUser)
+        const currentUser = req.session['currentUser']
+        if (currentUser) {
+            res.json(currentUser)
+        } else {
+            res.sendStatus(204)
+        }
     }
 
-    app.post("/api/users/profile", profile);
-    app.post("/api/users/register", register);
-    app.post("/api/users/login", login);
+    const findAllUsers = (req, res) => {
+        userDao.findAllUsers()
+            .then(users => res.json(users))
+    }
+
+    const updateProfile = (req, res) => {
+        const currentUser = req.session['currentUser']
+        const update = req.body
+        if (currentUser._id === update._id) {
+            userDao.updateUser(update)
+                .then(response => {
+                    res.send(response)
+                    req.session['currentUser'] = update
+                    req.session.save()
+                })
+        } else {
+            res.sendStatus(400)
+        }
+    }
+
+    const logout = (req, res) => {
+        req.session.destroy()
+        res.sendStatus(200)
+    }
+
+    app.post('/api/login', login)
+    app.post('/api/register', register)
+    app.get('/api/profile', profile)
+    app.put('/api/profile/update', updateProfile)
+    app.get('/api/users', findAllUsers)
+    app.post('/api/logout', logout)
+
 }
