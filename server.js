@@ -7,7 +7,7 @@ app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
 
 app.get('/', (req, res) => {
-    res.send('Hello')
+    res.send('Hello. This is our final project back end.')
 })
 
 const session = require('express-session')
@@ -16,8 +16,6 @@ app.use(session({
     resave: false,
     saveUninitialized: true,
 }))
-
-
 
 // const mongoose = require('mongoose');
 // mongoose.connect(
@@ -32,9 +30,8 @@ mongoose.connect(
 // http://wbdv-sp21-finalproject.herokuapp.com
 // http://localhost:3000
 
-// Configures CORS
 app.use(function (req, res, next) {
-    res.header('Access-Control-Allow-Origin', 'http://wbdv-sp21-finalproject.herokuapp.com');
+    res.header('Access-Control-Allow-Origin', `${process.env.CORS_ALLOW}`);
     res.header('Access-Control-Allow-Headers',
         'Content-Type, X-Requested-With, Origin');
     res.header('Access-Control-Allow-Methods',
@@ -48,4 +45,3 @@ require('./controllers/bookmark-controller')(app)
 require('./controllers/recommendation-controller')(app)
 
 app.listen(process.env.PORT || 4000)
-// app.listen(4000)
