@@ -27,11 +27,12 @@ const mongoose = require('mongoose');
 mongoose.connect(
     db_link,
     {useNewUrlParser: true, useUnifiedTopology: true});
+
 // http://wbdv-sp21-finalproject.herokuapp.com
 // http://localhost:3000
 
 app.use(function (req, res, next) {
-    res.header('Access-Control-Allow-Origin', `${process.env.CORS_ALLOW}`);
+    res.header('Access-Control-Allow-Origin', 'http://wbdv-sp21-finalproject.herokuapp.com');
     res.header('Access-Control-Allow-Headers',
         'Content-Type, X-Requested-With, Origin');
     res.header('Access-Control-Allow-Methods',
