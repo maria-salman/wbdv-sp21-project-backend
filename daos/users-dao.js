@@ -19,6 +19,10 @@ const updateUser = (userBody) => {
 
 const findAllUsers = () => userModel.find()
 
+const findAllAuthors = () => userModel.find({role: 'AUTHOR'})
+
+const findAllReaders = () => userModel.find({role: 'READER'})
+
 const findUserById = (userId) => {
     return userModel.findById(userId)
 }
@@ -28,5 +32,7 @@ module.exports = {
     createUser,
     updateUser,
     findAllUsers,
-    findUserById
+    findUserById,
+    findAllAuthors,
+    findAllReaders
 }

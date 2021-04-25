@@ -41,6 +41,16 @@ module.exports = (app) => {
             .then(users => res.json(users))
     }
 
+    const findAllAuthors = (req, res) => {
+        userDao.findAllAuthors()
+            .then(users => res.json(users))
+    }
+
+    const findAllReaders = (req, res) => {
+        userDao.findAllReaders()
+            .then(users => res.json(users))
+    }
+
     const findUserById = (req, res) => {
         const userId = req.params['uid']
         userDao.findUserById(userId)
@@ -72,6 +82,8 @@ module.exports = (app) => {
     app.get('/api/profile', profile)
     app.put('/api/profile/update', updateProfile)
     app.get('/api/users', findAllUsers)
+    app.get('/api/users/authors', findAllAuthors)
+    app.get('/api/users/readers', findAllReaders)
     app.get('/api/users/:uid', findUserById)
     app.post('/api/logout', logout)
 }
