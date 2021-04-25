@@ -20,10 +20,15 @@ const IsBookmark = (userId, bookId) => {
     return bookmarkModel.countDocuments({userId, bookId});
 }
 
+const getAllUsersForBookmark = (bookId) => {
+    return bookmarkModel.find({bookId})
+}
+
 module.exports = {
     addBookmark,
     removeBookmark,
     getBookmarksForUser,
     getAllBookmarks,
-    IsBookmark
+    IsBookmark,
+    getAllUsersForBookmark
 }
