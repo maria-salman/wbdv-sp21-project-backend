@@ -3,7 +3,8 @@ https://github.com/maria-salman/wbdv-sp21-project-frontend
 
 ## **Instructions**
 Our project is hosted remotely at: http://wbdv-sp21-finalproject.herokuapp.com/
-This is the back end repo for our project.  Both the front end and back end repos must be used to run this application.
+
+If you wish to run this app locally, both the front end and back end repos must be used to run the application. Steps to run the front end can be found in the README in the front end repo listed above.
 
 **Steps**
 1. Clone repo
