@@ -6,7 +6,7 @@ Our project is hosted remotely at: http://wbdv-sp21-finalproject.herokuapp.com/
 
 If you wish to run this app locally, both the front end and back end repos must be used to run the application. Steps to run the front end can be found in the README in the front end repo listed above.
 
-**Steps**
+## **Steps**
 1. Clone repo
 2. Install Mongo
 3. In the command line, run: ```npm install```
