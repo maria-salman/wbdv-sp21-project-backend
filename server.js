@@ -45,5 +45,6 @@ app.use(function (req, res, next) {
 require('./controllers/users-controller')(app)
 require('./controllers/bookmark-controller')(app)
 require('./controllers/recommendation-controller')(app)
+require('./controllers/authored-books-controller')(app)
 
 app.listen(process.env.PORT || 4000)
