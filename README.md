@@ -14,5 +14,6 @@ If you wish to run this app locally, both the front end and back end repos must 
 5. Run the command ```mongod --dbpath data``` (where data is the name of the data folder created in step 4.)
 6. Run shell in another terminal window with command ```mongo```.
 7. In .env file, define the following variable necessary to run the app
-    ORIGIN_NAME (Locally, http://localhost:3000)
+
+    ORIGIN_NAME = http://localhost:3000
 8. Run the server by running command ```node server.js``` or adding a configuration in Intellij called "server" to run server.js.
